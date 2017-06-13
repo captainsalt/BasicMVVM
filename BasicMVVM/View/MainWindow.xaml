@@ -1,0 +1,39 @@
+﻿<Window x:Class="BasicMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BasicMVVM"
+        xmlns:mainviewmodel="clr-namespace:BasicMVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <Style  x:Key="Margin" TargetType="Control">
+            <Setter Property="Margin" Value="0 2"/>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource Margin}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource Margin}"/>
+        <Style TargetType="ListBox" BasedOn="{StaticResource Margin}"/>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <mainviewmodel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Margin="5">
+        <DockPanel>
+            <Label DockPanel.Dock="Top">Firstname</Label>
+            <TextBox DockPanel.Dock="Top" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"></TextBox>
+
+            <Label DockPanel.Dock="Top">LastName</Label>
+            <TextBox DockPanel.Dock="Top" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"></TextBox>
+
+            <Button DockPanel.Dock="Top" Command="{Binding AddNewPersonCommand}">Add</Button>
+            <Button DockPanel.Dock="Top" Command="{Binding DeletePersonCommand}">Delete</Button>
+
+            <ListBox DockPanel.Dock="Top" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" DisplayMemberPath="FullName"></ListBox>
+        </DockPanel>
+    </Border>
+</Window>
