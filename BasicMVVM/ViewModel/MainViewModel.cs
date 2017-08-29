@@ -15,7 +15,7 @@ namespace BasicMVVM.ViewModel
         string _firstname;
         string _lastname;
         Person _selectedPerson;
-        ObservableCollection<Person> _people;
+        ObservableCollection<Person> _people = new ObservableCollection<Person>();
 
         public ICommand AddNewPersonCommand { get => new RelayCommand(AddNewPerson); }
         public ICommand DeletePersonCommand { get => new RelayCommand(DeletePerson); }
@@ -60,9 +60,6 @@ namespace BasicMVVM.ViewModel
 
         private void AddNewPerson()
         {
-            if (People == null)
-                People = new ObservableCollection<Person>();
-
             if (FirstName == null || LastName == null)
             {
                 FirstName = "N/A";
