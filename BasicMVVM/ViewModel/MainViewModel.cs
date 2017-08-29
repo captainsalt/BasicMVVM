@@ -17,8 +17,14 @@ namespace BasicMVVM.ViewModel
         Person _selectedPerson;
         ObservableCollection<Person> _people = new ObservableCollection<Person>();
 
-        public ICommand AddNewPersonCommand { get => new RelayCommand(AddNewPerson); }
-        public ICommand DeletePersonCommand { get => new RelayCommand(DeletePerson); }
+        public MainViewModel()
+        {
+            AddNewPersonCommand = new RelayCommand(AddNewPerson);
+            DeletePersonCommand = new RelayCommand(DeletePerson);
+        }
+
+        public ICommand AddNewPersonCommand { get; }
+        public ICommand DeletePersonCommand { get; }
         public string FirstName
         {
             get => _firstname;
